@@ -79,14 +79,14 @@ export class HomeComponent implements OnInit {
     let startIndex = (this.page - 1) * this.perPage
     let endIndex = this.page * this.perPage
 
-    this.getCity(country, state)
+    // this.getCity(country, state)
 
     // debugger
-    // while (this.dataSource.length < 10) {
-    //   this.getCity(country, state)
-    //   stateIndex =+ 1
-    //   state = this.states[stateIndex]
-    // }
+    while (this.dataSource.length < 10) {
+      await this.getCity(country, state)
+      stateIndex =+ 1
+      state = this.states[stateIndex]
+    }
 
   }
 
@@ -107,6 +107,19 @@ export class HomeComponent implements OnInit {
       this.done = true
     }
   })
+}
+
+previousPage() {
+  if (this.page > 1) {
+    this.page = this.page - 1
+    this.getData()
+  }
+}
+
+nextPage() {
+  this.page = this.page + 1
+  console.log("page: "+this.page)
+  this.getData()
 }
 
 }
